@@ -1,6 +1,5 @@
 package com.jam2in.arcus.board.controller;
 
-import com.jam2in.arcus.board.Test;
 import com.jam2in.arcus.board.model.Board;
 import com.jam2in.arcus.board.model.Pagination;
 import com.jam2in.arcus.board.model.Post;

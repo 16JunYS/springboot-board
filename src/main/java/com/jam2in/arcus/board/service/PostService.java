@@ -2,7 +2,6 @@ package com.jam2in.arcus.board.service;
 
 import com.jam2in.arcus.board.Application;
 import com.jam2in.arcus.board.PostArcus;
-import com.jam2in.arcus.board.Test;
 import com.jam2in.arcus.board.model.Comment;
 import com.jam2in.arcus.board.model.Post;
 import com.jam2in.arcus.board.repository.PostRepository;
@@ -22,8 +21,6 @@ public class PostService {
     private CommentService commentService;
     @Autowired
     private PostArcus postArcus;
-    @Autowired
-    private Test test;
 
     public int create(Post post) {
         //최신 글 N개를 캐싱해야하므로 생성하자마자 캐싱
