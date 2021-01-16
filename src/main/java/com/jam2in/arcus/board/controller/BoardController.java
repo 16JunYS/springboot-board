@@ -100,33 +100,23 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    /* ORIGINAL
-    @RequestMapping(path = "/board/info", method = RequestMethod.GET)
-    public String get(@RequestParam int id) {
-        LOGGER.info("GET BOARD");
-        boardService.get(id);
-        return "board";
-    }
-     */
     @RequestMapping(path = "/board/info", method = RequestMethod.GET)
     public String get(@RequestParam int id,
                       @RequestParam(required = false, defaultValue = "1") int pageIndex,
                       @RequestParam(required = false, defaultValue = "1") int groupIndex,
                       Model model){
-
         int listCnt = postService.countPost(id);
 
         //Test test = new Test();
         //test.uploadPost();
-        //System.out.println("test created!");
 
         Pagination pagination = new Pagination();
         //pagination.setPageSize(20);
         pagination.setGroupSize(10);
         pagination.pageInfo(groupIndex, pageIndex, listCnt);
         model.addAttribute("board_id", id);
-        //model.addAttribute("board_name", boardService.get(id).getName());
-        model.addAttribute("board_name", "(board_name)");
+        model.addAttribute("board_name", boardService.get(id).getName());
+        //model.addAttribute("board_name", "(board_name)");
         model.addAttribute("posts", postService.getPage(id, pagination.getStartList()-1, pagination.getPageSize()));
        // LOGGER.info("Board #{}, page#{} : {}", id, pagination.getGroupIndex(), pagination.getPageIndex());
         model.addAttribute("pagination", pagination);

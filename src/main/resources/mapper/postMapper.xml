@@ -6,8 +6,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO post (user_id, board_id, no, title, content)
-        VALUES ((SELECT id FROM user ORDER BY RAND() LIMIT 1), #{board_id},
-                (SELECT IFNULL(MAX(no)+1, 1) FROM post AS p WHERE board_id=#{board_id}),
+        VALUES ((SELECT id FROM user ORDER BY RAND() LIMIT 1),
+                #{board_id}, (SELECT IFNULL(MAX(no)+1, 1) FROM post AS p WHERE board_id=#{board_id}),
                 #{title}, #{content})
     </insert>
 

@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.logging.Logger;
+
 @SpringBootApplication
 public class Application {
     static ArcusClientPool arcusClient;
-    static public final boolean CACHE = false;
+    static public boolean CACHE = false;
 
     public static void main(String[] args) {
         if (CACHE) {
-            //arcusClient = ArcusClient.createArcusClientPool("1.255.51.181:8080", "test", new ConnectionFactoryBuilder(), 8);
-            arcusClient = ArcusClient.createArcusClientPool("172.17.0.1:6379", "test", new ConnectionFactoryBuilder(), 8);
+            try {
+                arcusClient = ArcusClient.createArcusClientPool("10.0.0.1:2181", "test", new ConnectionFactoryBuilder(), 8);
+            } catch (IllegalStateException e) {
+                arcusClient.shutdown();
+                CACHE = false;
+            }
             System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.SLF4JLogger");
         }
         SpringApplication.run(Application.class, args);

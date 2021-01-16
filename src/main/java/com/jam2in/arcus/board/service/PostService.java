@@ -28,7 +28,6 @@ public class PostService {
         if (Application.CACHE) {
             Post info = postRepository.selectOne(post.getId());
             postArcus.setPostInfo(info);
-
         }
         return result;
     }
