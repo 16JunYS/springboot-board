@@ -7,7 +7,7 @@ $(document).on('click', "#btnCmtAdd", function() {
     var content = $("#content").val();
     var comment = JSON.stringify({"post_id":post_id, "content":content});
    $.ajax({
-        url:"/cmt/add",
+        url:"/cmt",
         type:"POST",
         dataType: "text",
         data: comment,
@@ -21,7 +21,6 @@ $(document).on('click', "#btnCmtUpdate", function() {
     var id = $("#id").val();
     var content = $("#content").val();
     var comment = JSON.stringify({"id":id, "content":content});
-    console.log('update : '+comment);
     $.ajax({
         url:"/cmt/update",
         type:"POST",
@@ -80,8 +79,6 @@ function prevCmtPaging() {
             var prev_pageIndex = (groupIndex-2)*result.groupSize+1;
             var next_groupIndex = groupIndex*1+1;
             var next_pageIndex = groupIndex*result.groupSize+1;
-            console.log("****" + prev_groupIndex + " " + prev_pageIndex);
-            console.log("****" + next_groupIndex + " " + next_pageIndex);
             htmls += '<div id="cmtPagination">';
             htmls += '<ul class="pagination">';
             if(result.prev==false) {
@@ -158,11 +155,13 @@ function nextCmtPaging() {
     });
 }
 
+/*  댓글 삭제   */
 function cmt_delete(id, post_id) {
     console.log('function cmt_delete');
 
     $.ajax({
-        url:"/cmt/delete",
+        url:"/cmt",
+        type:"DELETE",
         dataType: "text",
         data: {"id":id, "post_id":post_id},
         success: function(result) {
@@ -171,14 +170,15 @@ function cmt_delete(id, post_id) {
     });
 }
 
+/*  댓글 수정  */
 function cmt_update(id, content, post_id) {
     var id = $("#id").val();
     var content = $("#content").val();
     var comment = JSON.stringify({"id":id, "content":content, "post_id":post_id});
     console.log('update : '+comment);
     $.ajax({
-        url:"/cmt/update",
-        type:"POST",
+        url:"/cmt",
+        type:"PUT",
         dataType: "text",
         data: comment,
         contentType : 'application/json; charset=utf-8',
@@ -189,7 +189,6 @@ function cmt_update(id, content, post_id) {
 }
 
 function cmt_edit(id, content, post_id) {
-    console.log('function cmt_edit!!');
     var htmls = "";
     htmls += '<div class="my-3 p-3 bg-white rounded shadow-sm row" id="cid'+this.id+'">';
     htmls += '<form action="/cmt/update" method="post">';

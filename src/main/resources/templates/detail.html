@@ -27,14 +27,15 @@
         <td colspan="2"  style="height:200px;" th:text="${post.content}"></td>
     </tr>
 </table>
-<form action="/post/edit" method="post">
+<form action="/post/edit" method="get">
     <input type="hidden" name="id" th:value="${post.id}"/>
     <input type="hidden" name="board_id" th:value="${post.board_id}"/>
     <input type="hidden" name="title" th:value="${post.title}"/>
     <input type="hidden" name="content" th:value="${post.content}"/>
     <button type="submit" class="btn btn-light">수정</button>
 </form>
-<form action="/post/delete" method="post">
+<form action="/post" method="post">
+    <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="id" th:value="${post.id}"/>
     <input type="hidden" name="board_id" th:value="${post.board_id}"/>
     <button type="submit" class="btn btn-light">삭제</button>
