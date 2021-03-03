@@ -26,13 +26,6 @@ public class BoardController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/")
-    public String home(Model model) {
-        model.addAttribute("id", 1);
-        model.addAttribute("name", "hello");
-        return "home";
-    }
-
     //************************************************************************************************
     // REST API (application/json)
     //************************************************************************************************
@@ -79,27 +72,28 @@ public class BoardController {
     //************************************************************************************************
     // FORM (form-data, x-www-form-urlencoded)
     //************************************************************************************************
-    @RequestMapping(path = "/board/create", method = RequestMethod.POST)
+    /*  새로운 게시판 생성  */
+    @RequestMapping(path = "/board", method = RequestMethod.POST)
     public String create(@ModelAttribute Board board) {
-        //LOGGER.info("CREATE BOARD");
         boardService.create(board);
         return "redirect:/board";
     }
 
-    @RequestMapping(path = "/board/update", method = RequestMethod.POST)
+    /*  게시판 수정   */
+    @RequestMapping(path = "/board", method = RequestMethod.PUT)
     public String update(@ModelAttribute Board board) {
-        //LOGGER.info("UPDATE BOARD");
         boardService.update(board);
         return "board";
     }
 
-    @RequestMapping(path = "/board/remove", method = RequestMethod.POST)
+    /*  게시판 삭제  */
+    @RequestMapping(path = "/board", method = RequestMethod.DELETE)
     public String delete(@ModelAttribute Board board) {
-        //LOGGER.info("REMOVE BOARD");
         boardService.remove(board);
         return "redirect:/board";
     }
 
+    /*  상세 게시판 조회  */
     @RequestMapping(path = "/board/info", method = RequestMethod.GET)
     public String get(@RequestParam int id,
                       @RequestParam(required = false, defaultValue = "1") int pageIndex,
@@ -123,9 +117,9 @@ public class BoardController {
         return "list";
     }
 
+    /*  전체 게시판 조회   */
     @RequestMapping(path = "/board", method = RequestMethod.GET)
     public String getAll(Model model) {
-        //LOGGER.info("GET ALL BOARD");
         model.addAttribute("boards", boardService.getAll());
         return "board";
     }

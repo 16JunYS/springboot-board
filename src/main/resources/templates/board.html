@@ -13,19 +13,20 @@
 
     <br/>
 
-    <form action="/board/create" method="POST">
+    <form action="/board" method="post">
         <span>게시판 이름:</span>
         <input type="text" name="name"/>
         <input type="submit" value="생성"/>
     </form>
 
-    <form action="/board/remove" method="POST">
+    <form action="/board" method="post">
+        <input type="hidden" name="_method" value="DELETE">
         <span>게시판 ID:</span>
         <input type="text" name="id"/>
         <input type="submit" value="제거"/>
     </form>
 
-    <form action="/board/info" method="GET">
+    <form action="/board/info" method="get">
         <span>게시판 선택:</span>
         <input type="text" name="id"/>
         <input type="hidden" name="groupIndex" value="1"/>
