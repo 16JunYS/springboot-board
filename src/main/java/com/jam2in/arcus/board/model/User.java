@@ -4,21 +4,21 @@ public class User {
 
     private int id;
 
-    private int name;
+    private String name;
 
-    public int getUser_id() {
+    public int getId() {
         return id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setId(int user_id) {
         this.id = user_id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

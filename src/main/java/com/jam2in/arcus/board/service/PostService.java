@@ -2,7 +2,6 @@ package com.jam2in.arcus.board.service;
 
 import com.jam2in.arcus.board.Application;
 import com.jam2in.arcus.board.PostArcus;
-import com.jam2in.arcus.board.model.Comment;
 import com.jam2in.arcus.board.model.Post;
 import com.jam2in.arcus.board.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

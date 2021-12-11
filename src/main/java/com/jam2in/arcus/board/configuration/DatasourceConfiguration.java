@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:config.properties")
 public class DatasourceConfiguration {
 
     @Bean

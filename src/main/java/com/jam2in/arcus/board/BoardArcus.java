@@ -25,6 +25,7 @@ public class BoardArcus {
 
     public boolean bopCreateBoard(int id) {
         boolean setSuccess = false;
+        
         CollectionFuture<Boolean> future = null;
         String key="Board:"+id;
         CollectionAttributes attributes = new CollectionAttributes(300, MAX, CollectionOverflowAction.smallest_trim);
