@@ -16,13 +16,14 @@ import java.util.List;
 @Controller
 public class CommentController {
 
-   // private static final Logger logger = LoggerFactory.getLogger(PostController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PostController.class);
 
     @Autowired
     CommentService commentService;
 
+    /*  댓글 추가   */
     @ResponseBody
-    @RequestMapping(path = "cmt/add", method = RequestMethod.POST)
+    @RequestMapping(path = "cmt", method = RequestMethod.POST)
     public void add(@RequestBody Comment comment) {
         if (commentService.create(comment) == 0) {
             //Response HTTP Error (CONFLICT)
@@ -31,7 +32,7 @@ public class CommentController {
     }
 
     @ResponseBody
-    @RequestMapping(path = "cmt/update")
+    @RequestMapping(path = "cmt", method = RequestMethod.PUT)
     public String update(@RequestBody Comment comment, Model model) {
         if (commentService.update(comment) == 0) {
             //Response HTTP Error (CONFLICT)
@@ -42,7 +43,7 @@ public class CommentController {
     }
 
     @ResponseBody
-    @RequestMapping(path = "cmt/delete")
+    @RequestMapping(path = "cmt", method = RequestMethod.DELETE)
     public void delete(@RequestParam int id, @RequestParam int post_id) {
         Comment comment = commentService.get(id);
         if (commentService.delete(id, post_id) == 0) {
